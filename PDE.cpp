@@ -5,9 +5,9 @@ using namespace std;
 
 //inicializamos las constantes 
 
- const int filas = 500,columnas = 500,r=50,h=1,N=10,centrox=250,centroy=250;
- float k=1.62,cp=820,p=2.71,dt=9.22e-5;
- float v=2710;
+ const int filas = 50,columnas = 50,r=5,N=5,centrox=25,centroy=25;
+const  float k=1.62e4,cp=820e10,p=2.71,h=1.0;
+const float v=2710,dt=(h*h)/(4*v);
 
 void circuloV(float seccion[][columnas],int r, int centrox,int centroy);
 void condicionesFrontera(float seccion[][columnas],float temperatura,int caso);
@@ -39,7 +39,7 @@ void circuloV(float seccion[][columnas],int r, int centrox,int centroy)
 }
 
 //condiciones de frontera dadas por el enunciado segun los 3 casos.
-void condiciones(float seccion [][columnas],float temperatura, int caso)
+void condicionesFrontera(float seccion [][columnas],float temperatura, int caso)
 {
 	if (caso==1)
 		{
@@ -74,16 +74,14 @@ void condiciones(float seccion [][columnas],float temperatura, int caso)
 
 //ecuacion de propagacion 
 void ecuaciondifin1(float seccion[][columnas])
-{
-	int contador = 0;
-    
+{   int contador = 0;
+    float tn[filas][columnas] = {};	   
     do 	
 	for (int x = 1 ; x < filas-1 ; x++)
-	{
+	{ circuloV(seccion,r,centrox,centroy);        
 	    for (int y = 1 ; y < columnas-1 ; y++)
-			{
-                        circuloV(seccion,r,centrox,centroy);
-                        condiciones(seccion,10,1);
+			{                        
+                        condicionesFrontera(seccion,10,1);
 			seccion[x][y]=(1-(4*dt*v)/(h*h))*seccion[x][y]+(dt*v/h*h)*(seccion[x+1][y]+seccion[x][y+1]+seccion[x-1][y]+seccion[x][y-1]);
 			}
 	}
@@ -92,26 +90,26 @@ void ecuaciondifin1(float seccion[][columnas])
 
 //guarda los datos en un archivo txt 
 void datos(float seccion[][columnas], string nombre)
-{
-  ofstream myfile (string nombre);
+
+{  ofstream myfile (nombre);
   if (myfile.is_open())
-  {
-    for(int x = 0; x < filas; x ++)
-    {
-     if(x!=0)	{
-     		myfile << "\n";
-		}    
-     	for(int y = 0; y < columnas; y ++)
-     		{  
-        	myfile << seccion[x][y] << "," ;
- 		}   
-    }
+  { for(int x = 0; x < filas-1; x ++)
+    {	if(x!=0)
+        { 	
+          myfile << "\n";
+	}    
+     	
+    for(int y = 0; y < columnas-1; y ++)
+     {  
+        myfile << seccion[x][y] << "," ;
+     }   
+    }	
     myfile.close();
   }
-  else cout << "No se pudieron guardar los datos";
+  else cout << "no se pudo abrir el archivo";
 }
 
 
 
 
-}
+
