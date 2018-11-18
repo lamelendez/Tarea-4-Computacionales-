@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <fstream>
+#include <string>
 using namespace std;
 
 //inicializamos las constantes 
@@ -12,6 +14,7 @@ const float v=2710,dt=(h*h)/(4*v);
 void circuloV(float seccion[][columnas],int r, int centrox,int centroy);
 void condicionesFrontera(float seccion[][columnas],float temperatura,int caso);
 void ecuaciondifin1(float seccion[][columnas]);
+void ecuaciondifin2(float seccion[][columnas]);
 void datos(float seccion[][columnas], string nombre);
 
 int main()
@@ -74,35 +77,46 @@ void condicionesFrontera(float seccion [][columnas],float temperatura, int caso)
 
 //ecuacion de propagacion 
 void ecuaciondifin1(float seccion[][columnas])
-{   int contador = 0;
-    float tn[filas][columnas] = {};	   
+{
+	int contador = 0;
+    
+
     do 	
-	for (int x = 1 ; x < filas-1 ; x++)
-	{ circuloV(seccion,r,centrox,centroy);        
-	    for (int y = 1 ; y < columnas-1 ; y++)
-			{                        
-                        condicionesFrontera(seccion,10,1);
+	for (int x = 1 ; x < filas ; x++)
+	{
+		
+		
+		for (int y = 1 ; y < columnas ; y++)
+			{
+			circuloV(seccion,r,centrox,centroy);
 			seccion[x][y]=(1-(4*dt*v)/(h*h))*seccion[x][y]+(dt*v/h*h)*(seccion[x+1][y]+seccion[x][y+1]+seccion[x-1][y]+seccion[x][y-1]);
+			condicionesFrontera(seccion,10,1);
 			}
 	}
+
 	while (++contador <=N);
 }
+
+
+
 
 //guarda los datos en un archivo txt 
 void datos(float seccion[][columnas], string nombre)
 
 {  ofstream myfile (nombre);
   if (myfile.is_open())
-  { for(int x = 0; x < filas-1; x ++)
-    {	if(x!=0)
-        { 	
-          myfile << "\n";
-	}    
+  {
+    for(int x = 0; x < filas-1; x ++)
+    {
+	if(x!=0)
+			{
+     			myfile << "\n";
+			}    
      	
-    for(int y = 0; y < columnas-1; y ++)
-     {  
-        myfile << seccion[x][y] << "," ;
-     }   
+     	for(int y = 0; y < columnas-1; y ++)
+     		{  
+        	myfile << seccion[x][y] << "," ;
+ 			}   
     }	
     myfile.close();
   }
