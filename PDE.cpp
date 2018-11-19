@@ -97,6 +97,20 @@ void ecuaciondifin1(float seccion[][columnas])
 	while (++contador <=N);
 }
 
+void ecuaciondifin2(float seccion[][columnas])
+{    	int contador = 0;     
+	condicionesFrontera(seccion,25,2);
+    do 	
+	for (int x = 1 ; x < filas ; x++)
+	{     for (int y = 1 ; y < columnas ; y++)
+			{
+			circuloV(seccion,r,centrox,centroy);
+			seccion[x][y]=(1-(4*dt*v)/(h*h))*seccion[x][y]+(dt*v/h*h)*(seccion[x+1][y]+seccion[x][y+1]+seccion[x-1][y]+seccion[x][y-1]);
+			}
+	}
+
+	while (++contador <=N);
+}
 
 
 
