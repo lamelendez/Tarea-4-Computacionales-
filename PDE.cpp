@@ -76,6 +76,8 @@ void condicionesFrontera(float seccion [][columnas],float temperatura, int caso)
 }
 
 //ecuacion de propagacion 
+
+//para bordes fijos
 void ecuaciondifin1(float seccion[][columnas])
 {
 	int contador = 0;
@@ -97,18 +99,35 @@ void ecuaciondifin1(float seccion[][columnas])
 	while (++contador <=N);
 }
 
+//para bordes abiertos
 void ecuaciondifin2(float seccion[][columnas])
-{    	int contador = 0;     
-	condicionesFrontera(seccion,25,2);
+{    	int contador = 0;   
     do 	
-	for (int x = 1 ; x < filas ; x++)
-	{     for (int y = 1 ; y < columnas ; y++)
+	for (int x = 1 ; x < filas-2 ; x++)
+	{    for (int y = 1 ; y < columnas-2 ; y++)
 			{
 			circuloV(seccion,r,centrox,centroy);
-			seccion[x][y]=(1-(4*dt*v)/(h*h))*seccion[x][y]+(dt*v/h*h)*(seccion[x+1][y]+seccion[x][y+1]+seccion[x-1][y]+seccion[x][y-1]);
+			seccion[x][y]=(1-(4*dt*v)/(h*h))*seccion[x][y]+(dt*v/h*h)*(seccion[x+1][y]+seccion[x][y+1]+seccion[x-1][y]+seccion[x][y-1]);			
 			}
-	}
+	condicionesFrontera(seccion,10,2);
+	} 		
+	while (++contador <=N);
+}
 
+//bordes periodicos 
+void ecuaciondifin3(float seccion[][columnas])
+{      int contador = 0;
+   do
+     for (int x = 1 ; x < filas-2 ; x++)
+	{
+        for (int y = 1 ; y < columnas-2 ; y++)
+	{
+          circuloV(seccion,r,centrox,centroy);
+	  seccion[x][y]=(1-(4*dt*v)/(h*h))*seccion[x][y]+(dt*v/h*h)*(seccion[x+1][y]+seccion[x][y+1]+seccion[x-1][y]+seccion[x][y-1]);
+					
+	}
+	condicionesFrontera(seccion,25,3);
+	}
 	while (++contador <=N);
 }
 
