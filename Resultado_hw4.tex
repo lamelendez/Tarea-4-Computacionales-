@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Tarea Métodos Computacionales 4}
+\author{Laura Rocio Melénde Bottia }
+\date{Noviembre 19 2018}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Proyectil}
+Elegimos como sistema ilustrativo un proyectil de masa m. Deseamos
+conocer su posición y velocidad en todo instante.
+Modelaremos el movimiento del proyectil suponiendo que existe un
+rozamiento proporcional al cuadrado del módulo de la velocidad y de
+sentido contrario a la misma.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{totvtw.jpg}
+\caption{Mismo proyectil lanzado a diferentes ángulos }
+\label{fig:universe}
+\end{figure}
+
+Runge Kutta 4-D, si funcionara veríamos una parabola alterada por el rozamiento. En este caso el codigo tiene un fallo por lo que no podemos visualizar lo deseado. Así mismo con los demás grados.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{45vtw.jpg}
+\caption{Mismo proyectil lanzado a 45 grados. }
+\label{fig:universe}
+\end{figure}
+
+En los demás casos deberíamos ver perfectamente la sensibilidad por el grado en el que se tira. 
+
+
+\section{Difusión de calor}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{fi1o.jpg}
+\caption{Fijo inicio }
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{fi2o.jpg}
+\caption{Fijo mitad }
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{fi3o.jpg}
+\caption{Fijo mitad}
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{fi4o.jpg}
+\caption{Fijo equilibrio}
+\label{fig:universe}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{ab1o.jpg}
+\caption{Abierto inicio }
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{ab2o.jpg}
+\caption{Abierto mitad }
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{ab3o.jpg}
+\caption{Abierto mitad}
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{ab4o.jpg}
+\caption{Abierto equilibrio}
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{pe1o.jpg}
+\caption{Periodica inicio }
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{pe2o.jpg}
+\caption{Periodica mitad }
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{pe3o.jpg}
+\caption{Periodica mitad}
+\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{pe4o.jpg}
+\caption{Periodica equilibrio}
+\label{fig:universe}
+\end{figure}
+
+
+
+
+
+
+
+
+\end{document}
