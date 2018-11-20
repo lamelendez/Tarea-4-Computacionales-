@@ -20,7 +20,7 @@ void funVelDist(float xvo,float yvo,const char* nombre);
 float rk4(float y0,float k1_c,float k2_c,float k3_c,float k4_c);
 
 
-
+//para cada angulo con su respectivo sen y cos ya hecho
 
 int main()
 {
@@ -37,7 +37,7 @@ int main()
 }
 
 
-
+//segun la formulas dadas ax y ay
 
 float aceleracionx(float x,float y)
 {
@@ -52,6 +52,7 @@ float aceleraciony(float y,float x)
 	return(t1-(t2*t3));
 }
 
+//runge Kutta en 4d
 float rk4(float y0,float k1_c,float k2_c,float k3_c,float k4_c)
 {
  
@@ -66,7 +67,9 @@ void funVelDist(float xvo,float yvo,const char* nombre)
 	float yinicial = 0;
 	float contador=0;
 	float velactu=0;
-	float xve = 0;
+	float xve = 0;                   //inicializamos las vs y xs para actualizar, creamos las ks para cada coordenada dependiendo si es para la velocidad y para la posicion, y luego actualizamos segun el metodo runge kutta
+
+
 	float y_0 = 0;
 	float velactuy=0;
         float posicionx= 0;
